@@ -5,7 +5,16 @@ from 'react';
 import { enableScreens } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+import { MusicProvider } from './src/constants/music';
+import MusicPlayer from './src/components/MusicPlayer';
+
 import HomeScreen from './src/screens/HomeScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
+import QuizModeScreen from './src/screens/QuizModeScreen';
+import TopicsScreen from './src/screens/TopicsScreen';
+import PathfinderQuizScreen from './src/screens/PathfinderQuizScreen';
+import ChampionQuizScreen from './src/screens/ChampionQuizScreen';
 
 enableScreens();
 
@@ -38,35 +47,63 @@ const App = () => {
     // }, []);
   
     return (
-            <NavigationContainer>
-            {/* {
-                !loaderIsEnded ? (
-                    <View style={{ flex: 1 }}>
-                        <ImageBackground style={{ flex: 1 }} source={loaderImage}>
-                            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <MusicProvider>
+            <MusicPlayer />
+                <NavigationContainer>
+                {/* {
+                    !loaderIsEnded ? (
+                        <View style={{ flex: 1 }}>
+                            <ImageBackground style={{ flex: 1 }} source={loaderImage}>
+                                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-                                <Animated.View style={[styles.imageContainer, { opacity: firstImageAnim }]}>
-                                    <ImageBackground source={firstLoaderImage} style={styles.image} />
-                                </Animated.View>
+                                    <Animated.View style={[styles.imageContainer, { opacity: firstImageAnim }]}>
+                                        <ImageBackground source={firstLoaderImage} style={styles.image} />
+                                    </Animated.View>
 
-                                <Animated.View style={[styles.imageContainer, { opacity: loaderImageAnim }]}>
-                                    <ImageBackground source={loaderImage} style={styles.image} />
-                                </Animated.View>
-                                
-                            </View>
-                        </ImageBackground>
-                    </View>
-                ) : ( */}
-                    <Stack.Navigator initialRouteName="HomeScreen">
-                        <Stack.Screen 
-                            name="HomeScreen" 
-                            component={HomeScreen} 
-                            options={{ headerShown: false }} 
-                        />
-                    </Stack.Navigator>
-                     {/* )
-                 } */}
-            </NavigationContainer>
+                                    <Animated.View style={[styles.imageContainer, { opacity: loaderImageAnim }]}>
+                                        <ImageBackground source={loaderImage} style={styles.image} />
+                                    </Animated.View>
+                                    
+                                </View>
+                            </ImageBackground>
+                        </View>
+                    ) : ( */}
+                        <Stack.Navigator initialRouteName="HomeScreen">
+                            <Stack.Screen 
+                                name="HomeScreen" 
+                                component={HomeScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="SettingsScreen" 
+                                component={SettingsScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="QuizModeScreen" 
+                                component={QuizModeScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="TopicsScreen" 
+                                component={TopicsScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="PathfinderQuizScreen" 
+                                component={PathfinderQuizScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="ChampionQuizScreen" 
+                                component={ChampionQuizScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                        </Stack.Navigator>
+                        {/* )
+                    } */}
+                </NavigationContainer>
+        </MusicProvider>
     );
 };
 

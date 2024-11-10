@@ -1,11 +1,13 @@
 import { View } from "react-native"
-import Home from "../components/Home"
+import Topics from "../components/Topics"
 import MenuPanel from "../components/MenuPanel";
 
-const HomeScreen = () => {
+const TopicsScreen = ({ route }) => {
+    const { difficulty } = route.params
+
     return (
         <View style={styles.container}>
-            <Home />
+            <Topics difficulty = {difficulty} />
             <View style={styles.menu}>
                 <MenuPanel />
             </View>
@@ -25,4 +27,4 @@ const styles = {
     }
 }
 
-export default HomeScreen;
+export default TopicsScreen;

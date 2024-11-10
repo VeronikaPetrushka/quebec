@@ -9,7 +9,7 @@ const AboutModal = ({ visible, onClose }) => {
         <Modal
             transparent={true}
             visible={visible}
-            animationType="slide"
+            animationType="fade"
             onRequestClose={onClose}
         >
             <View style={styles.modalContainer}>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         width: '90%',
-        height: '65%',
+        height: '60%',
         padding: 20,
         paddingTop: 50,
         backgroundColor: 'white',
@@ -58,14 +58,7 @@ const styles = StyleSheet.create({
         fontSize: 19,
         marginBottom: 10,
         textAlign: 'center',
-        color: '#817a6e'
-    },
-    title: {
-        fontSize: 21,
-        marginBottom: 10,
-        textAlign: 'center',
-        color: '#e1251b',
-        fontWeight: 'bold'
+        color: '#3C3C3C'
     },
     bold: {
         fontWeight: 'bold',

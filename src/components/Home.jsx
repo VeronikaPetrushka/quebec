@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image, ImageBackground } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import { MusicProvider } from '../constants/music';
-import MusicPlayer from './MusicPlayer';
-import SettingsModal from './SettingsModal';
 import UserProfile from './UserProfile';
 import AboutModal from './AboutModal';
 
@@ -12,7 +9,6 @@ const { height } = Dimensions.get('window');
 
 const Home = () => {
     const navigation = useNavigation();
-    const [settingsModalVisible, setSettingsModalVisible] = useState(false);
     const [aboutModalVisible, setAboutModalVisible] = useState(false);
     const [userProfileModalVisible, setUserProfileModalVisible] = useState(false);
     const [uploadedImage, setUploadedImage] = useState({ uri: Image.resolveAssetSource(require('../assets/avatar/user.png')).uri });
@@ -52,16 +48,7 @@ const Home = () => {
         await loadName();
     };
 
-    const closeSettingsModal = async () => {
-        setSettingsModalVisible(false);
-        setUploadedImage({ uri: Image.resolveAssetSource(require('../assets/avatar/user.png')).uri });
-        await loadAvatar();
-        await loadName();
-    };
-
     return(
-        <MusicProvider>
-        <MusicPlayer />
         <View style={styles.container}>
 
             <TouchableOpacity style={styles.userContainer} onPress={() => setUserProfileModalVisible(true)}>
@@ -76,9 +63,13 @@ const Home = () => {
                     </View>
             </TouchableOpacity>
 
+            <Image source={require('../assets/images/home.png')} style={styles.image} />
+
+            <Text style={styles.title}>Quebec: The Ultimate Cultural and Historical Guide</Text>
+
             <View style={styles.btnContainer}>
 
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('QuizModeScreen')}>
                 <Text style={styles.btnTxt}>Get started</Text>
             </TouchableOpacity>
 
@@ -96,15 +87,9 @@ const Home = () => {
 
             </View>
 
-            {/* <TouchableOpacity style={styles.btn} onPress={() => setSettingsModalVisible(true)}>
-                <Text style={styles.btnTxt}>Settings</Text>
-            </TouchableOpacity> */}
-
             <UserProfile visible={userProfileModalVisible} onClose={closeUserProfileModal}/>
             <AboutModal visible={aboutModalVisible} onClose={() => setAboutModalVisible(false)}/>
-            {/* <SettingsModal visible={settingsModalVisible} onClose={closeSettingsModal}/> */}
         </View>
-        </MusicProvider>
     )
 };
 
@@ -115,27 +100,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         padding: 30,
-        paddingTop: height * 0.07
+        paddingTop: height * 0.07,
+        backgroundColor: '#FDF3E7'
     },
 
     userContainer: {
+        flexDirection: 'row',
         alignItems: 'center',
-        padding: 15,
-        borderRadius: 20,
-        borderColor: '#e1251b',
-        borderWidth: 2,
+        padding: 7,
+        paddingHorizontal: 15,
+        borderRadius: 15,
+        backgroundColor: 'rgba(60, 60, 60, 0.55)',
         zIndex: 10,
         marginBottom: height * 0.05
     },
 
     imageContainer: {
         padding: 0,
-        width: height * 0.2,
-        height: height * 0.2,
+        width: height * 0.06,
+        height: height * 0.06,
         alignItems: 'center',
         borderRadius: 100,
         overflow: 'hidden',
-        marginBottom: height * 0.03,
+        marginRight: 10
     },
 
     avatarImage: {
@@ -157,8 +144,26 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 22,
         fontWeight: '600',
-        color: '#990000',
+        color: '#3C3C3C',
         textAlign: 'center'
+    },
+
+    image: {
+        width: '100%',
+        height: height * 0.3,
+        resizeMode: 'cover',
+        borderRadius: 12,
+        overflow: 'hidden',
+        marginBottom: height * 0.05
+    },
+
+    title: {
+        fontSize: 23,
+        fontWeight: '700',
+        color: '#0A3D62',
+        lineHeight: 23,
+        textAlign: 'center',
+        marginBottom: height * 0.02
     },
 
     btnContainer: {
@@ -175,16 +180,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '47%',
-        height: height * 0.14,
-        borderWidth: 2,
-        borderColor: '#e1251b',
-        backgroundColor: ('rgba(255, 37, 27, 0.3)'),
+        height: height * 0.1,
+        borderWidth: 0.5,
+        borderColor: '#3C3C3C',
+        backgroundColor: '#FFBE76',
         borderRadius: 12,
         marginBottom: 10,
         zIndex: 10
     },
 
-
+    btnTxt: {
+        fontSize: 18,
+        fontWeight: '900',
+        color: '#3C3C3C'
+    }
 });
 
 export default Home;

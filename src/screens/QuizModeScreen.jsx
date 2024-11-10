@@ -1,11 +1,11 @@
 import { View } from "react-native"
-import Home from "../components/Home"
+import QuizMode from "../components/QuizMode"
 import MenuPanel from "../components/MenuPanel";
 
-const HomeScreen = () => {
+const QuizModeScreen = () => {
     return (
         <View style={styles.container}>
-            <Home />
+            <QuizMode />
             <View style={styles.menu}>
                 <MenuPanel />
             </View>
@@ -25,4 +25,4 @@ const styles = {
     }
 }
 
-export default HomeScreen;
+export default QuizModeScreen;

@@ -7,10 +7,26 @@ const Icons = ({ type, active }) => {
   let iconStyle = [styles.icon];
 
   switch (type) {
-    // case 'home':
-    //   imageSource = require('../assets/panel/home.png');
-    //   active && iconStyle.push(styles.active);
-    //   break;
+    case 'home':
+      imageSource = require('../assets/panel/home.png');
+      active && iconStyle.push(styles.active);
+      break;
+    case 'history':
+      imageSource = require('../assets/panel/history.png');
+      active && iconStyle.push(styles.active);
+      break;
+    case 'craft':
+      imageSource = require('../assets/panel/craft.png');
+      active && iconStyle.push(styles.active);
+      break;
+    case 'settings':
+      imageSource = require('../assets/panel/settings.png');
+      active && iconStyle.push(styles.active);
+      break;
+    case 'book':
+      imageSource = require('../assets/panel/book.png');
+      active && iconStyle.push(styles.active);
+      break;
     case 'close':
         imageSource = require('../assets/common/close.png');
     break;
@@ -35,32 +51,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    tintColor: '#e1251b',
+    tintColor: '#fff',
   },
-  closeIcon: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    tintColor: '#e1251b',
-  },
-  backIcon: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    tintColor: '#e1251b',
-  },
-  arrowIcon: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    tintColor: '#e1251b',
-  },
-  lifeIcon: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    tintColor: '#d6d1d0',
-  }
 });
 
 export default Icons;

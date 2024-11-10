@@ -89,7 +89,7 @@ const UserProfile = ({ visible, onClose }) => {
     <Modal
       transparent={true}
       visible={visible}
-      animationType="slide"
+      animationType="fade"
       onRequestClose={onClose}
     >
       <View style={styles.modalContainer}>
@@ -117,7 +117,7 @@ const UserProfile = ({ visible, onClose }) => {
                       <TextInput
                         value={name}
                         placeholder="Enter your name"
-                        placeholderTextColor="#e1251b"
+                        placeholderTextColor="#0A3D62"
                         onChangeText={handleNameChange}
                         style={styles.input}
                       />
@@ -155,7 +155,7 @@ const styles = {
     justifyContent: "flex-start",
     alignItems: "center",
     width: '90%',
-    height: '60%',
+    height: '53%',
     borderRadius: 15,
     backgroundColor: '#fff',
   },
@@ -185,7 +185,7 @@ const styles = {
     fontWeight: "bold",
     marginBottom: 20,
     marginTop: -15,
-    color: '#817a6e'
+    color: '#0A3D62'
   },
 
   avatarPlaceholder: {
@@ -220,11 +220,11 @@ const styles = {
     paddingHorizontal: 20,
     marginTop: height * 0.05,
     borderWidth: 1,
-    borderColor: "#e1251b",
+    borderColor: "#0A3D62",
     borderRadius: 10,
     width: "100%",
     fontSize: 17,
-    color: '#e1251b',
+    color: '#0A3D62',
   },
 
   btnCreate: {
@@ -235,7 +235,7 @@ const styles = {
     marginBottom: 10,
     position: 'absolute',
     bottom: height * 0.08,
-    backgroundColor: '#e1251b',
+    backgroundColor: '#FFBE76',
   },
 
   btnCreateText: {
