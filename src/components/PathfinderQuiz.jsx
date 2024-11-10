@@ -1,26 +1,50 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Icons from './Icons';
 
 const PathfinderQuiz = ({ quiz }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [correctOption, setCorrectOption] = useState(null);
+  const [score, setScore] = useState(0);
+  const [timer, setTimer] = useState(90);
+  const [lives, setLives] = useState(3);
+
+  useEffect(() => {
+    if (timer > 0 && currentQuestionIndex < quiz.questions.length && lives > 0) {
+      const interval = setInterval(() => {
+        setTimer(prevTimer => prevTimer - 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [timer, currentQuestionIndex, lives]);
 
   const handleOptionSelect = (option) => {
-    if (answered) return;
+    if (answered || timer === 0 || lives === 0) return;
 
     setSelectedOption(option);
     setAnswered(true);
 
     if (option === quiz.questions[currentQuestionIndex].correct) {
       setCorrectOption(option);
+      setScore(score + 100);
     } else {
       setCorrectOption(quiz.questions[currentQuestionIndex].correct);
+      setLives(lives - 1);
+    }
+
+    if (lives === 1) {
+      setTimeout(() => {
+        setCurrentQuestionIndex(quiz.questions.length);
+      }, 1000);
     }
 
     setTimeout(() => {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      if (lives > 0) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      }
       setAnswered(false);
       setSelectedOption(null);
       setCorrectOption(null);
@@ -34,6 +58,22 @@ const PathfinderQuiz = ({ quiz }) => {
     return (
       <View style={styles.questionContainer}>
         <Text style={styles.question}>{question.question}</Text>
+        <View style={{flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20}}>
+            <Text style={styles.timer}>{formatTime(timer)}</Text>
+            <Text style={styles.timer}>{score}</Text>
+        </View>
+        <View style={{flexDirection: 'row', width: '100%', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                {[...Array(3)].map((_, index) => (
+                    <View key={index} style={styles.heart}>
+                        <Icons type={index < lives ? 'heart' : 'heart-grey'} />
+                    </View>
+                ))}
+            </View>
+            <TouchableOpacity style={styles.hint}>
+                <Icons type={'hint'} />
+            </TouchableOpacity>
+        </View>
         <View style={styles.optionsContainer}>
           {options.map((option, index) => {
             const isSelected = option === selectedOption;
@@ -60,21 +100,28 @@ const PathfinderQuiz = ({ quiz }) => {
     );
   };
 
-  const renderEndMessage = () => {
+  const renderFinish = () => {
     return (
       <View style={styles.endMessageContainer}>
         <Text style={styles.endMessage}>Quiz Finished!</Text>
-        <Text style={styles.endMessage}>You have completed all the questions.</Text>
+        <Text style={styles.endMessage}>Your final score is: {score}</Text>
       </View>
     );
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.topic}>{quiz.topic}</Text>
-      {currentQuestionIndex < quiz.questions.length
+
+      {timer > 0 && currentQuestionIndex < quiz.questions.length
         ? renderQuestion()
-        : renderEndMessage()}
+        : renderFinish()}
     </View>
   );
 };
@@ -90,6 +137,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
+  },
+  timer: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'red',
   },
   questionContainer: {
     marginBottom: 20,
@@ -137,6 +190,15 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#333',
   },
+  heart: {
+    width: 35,
+    height: 35,
+    marginRight: 1
+  },
+  hint: {
+    width: 35,
+    height: 35,
+  }
 });
 
 export default PathfinderQuiz;
