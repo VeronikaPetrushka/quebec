@@ -51,7 +51,7 @@ const Catalogue = () => {
             {catalogueItems.length === 0 ? (
                 <View style={styles.noItemsContainer}>
                     <Text style={styles.noItemsText}>
-                        No saved places yet! Complete successfully at least one quiz and save it in details to see saved places here.
+                        No saved places yet! Complete successfully at least one Pathfinder quiz and save it in details to see saved places here.
                     </Text>
                     <TouchableOpacity
                         style={styles.navigateButton}
@@ -96,9 +96,10 @@ const styles = StyleSheet.create({
     },
     navigateButton: {
         backgroundColor: '#FF9927',
-        padding: 15,
+        padding: 10,
         borderRadius: 10,
         alignItems: 'center',
+        width: width * 0.85
     },
     navigateButtonText: {
         color: 'white',

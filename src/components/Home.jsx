@@ -73,11 +73,11 @@ const Home = () => {
                 <Text style={styles.btnTxt}>Get started</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ResultsScreen')}>
                 <Text style={styles.btnTxt}>Results</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('CatalogueScreen')}>
                 <Text style={styles.btnTxt}>Catalogue</Text>
             </TouchableOpacity>
 

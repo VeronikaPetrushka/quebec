@@ -28,9 +28,9 @@ const MenuPanel = () => {
 
             <View style={styles.btnContainer}>
                 <TouchableOpacity 
-                    style={[styles.button, activeButton === 'HistoriesScreen' && styles.activeButton]} 
-                    onPress={() => handleNavigate('HistoriesScreen')}>
-                    <Icons type={'history'} active={activeButton === 'HistoriesScreen'}/>
+                    style={[styles.button, activeButton === 'HistoryScreen' && styles.activeButton]} 
+                    onPress={() => handleNavigate('HistoryScreen')}>
+                    <Icons type={'history'} active={activeButton === 'HistoryScreen'}/>
                 </TouchableOpacity>
             </View>
 
@@ -52,9 +52,9 @@ const MenuPanel = () => {
 
             <View style={styles.btnContainer}>
                 <TouchableOpacity 
-                    style={[styles.button, activeButton === 'CatalogueScreen' && styles.activeButton]} 
-                    onPress={() => handleNavigate('CatalogueScreen')}>
-                    <Icons type={'book'} active={activeButton === 'CatalogueScreen'}/>
+                    style={[styles.button, activeButton === 'BookScreen' && styles.activeButton]} 
+                    onPress={() => handleNavigate('BookScreen')}>
+                    <Icons type={'book'} active={activeButton === 'BookScreen'}/>
                 </TouchableOpacity>
             </View>
 
