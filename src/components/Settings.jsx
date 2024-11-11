@@ -50,6 +50,7 @@ const Settings = () => {
             await AsyncStorage.removeItem('uploadedImage');
             await AsyncStorage.removeItem('totalScore');
             await AsyncStorage.removeItem('places');
+            await AsyncStorage.removeItem('catalogue');
 
             setShowResetConfirmation(false);
 

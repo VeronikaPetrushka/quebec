@@ -340,7 +340,8 @@ const PathfinderQuiz = ({ quiz }) => {
                 onPress={() => navigation.navigate('MapScreen', {
                     image: quiz.storyImage,
                     name: quiz.storyName, 
-                    story: quiz.story
+                    story: quiz.story,
+                    coordinates: quiz.coordinates
                 })}>
                 <Text style={styles.buttonText}>Open</Text>
               </TouchableOpacity>
@@ -555,7 +556,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
-
   buttonText: {
     fontSize: 16,
     fontWeight: '900',

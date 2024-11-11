@@ -17,6 +17,7 @@ import PathfinderQuizScreen from './src/screens/PathfinderQuizScreen';
 import ChampionQuizScreen from './src/screens/ChampionQuizScreen';
 import MapScreen from './src/screens/MapScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
+import CatalogueScreen from './src/screens/CatalogueScreen';
 
 enableScreens();
 
@@ -109,6 +110,11 @@ const App = () => {
                             <Stack.Screen 
                                 name="DetailsScreen" 
                                 component={DetailsScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="CatalogueScreen" 
+                                component={CatalogueScreen} 
                                 options={{ headerShown: false }} 
                             />
                         </Stack.Navigator>

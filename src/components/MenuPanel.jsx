@@ -28,9 +28,9 @@ const MenuPanel = () => {
 
             <View style={styles.btnContainer}>
                 <TouchableOpacity 
-                    style={[styles.button, activeButton === 'ArtsScreen' && styles.activeButton]} 
-                    onPress={() => handleNavigate('ArtsScreen')}>
-                    <Icons type={'history'} active={activeButton === 'ArtsScreen'}/>
+                    style={[styles.button, activeButton === 'HistoriesScreen' && styles.activeButton]} 
+                    onPress={() => handleNavigate('HistoriesScreen')}>
+                    <Icons type={'history'} active={activeButton === 'HistoriesScreen'}/>
                 </TouchableOpacity>
             </View>
 
@@ -52,18 +52,18 @@ const MenuPanel = () => {
 
             <View style={styles.btnContainer}>
                 <TouchableOpacity 
-                    style={[styles.button, activeButton === '' && styles.activeButton]} 
-                    onPress={() => handleNavigate('')}>
-                    <Icons type={'book'} active={activeButton === ''}/>
+                    style={[styles.button, activeButton === 'CatalogueScreen' && styles.activeButton]} 
+                    onPress={() => handleNavigate('CatalogueScreen')}>
+                    <Icons type={'book'} active={activeButton === 'CatalogueScreen'}/>
                 </TouchableOpacity>
             </View>
 
 
             <View style={styles.btnContainer}>
                 <TouchableOpacity 
-                    style={[styles.button, activeButton === 'PlacesScreen' && styles.activeButton]} 
-                    onPress={() => handleNavigate('PlacesScreen')}>
-                    <Icons type={'craft'} active={activeButton === 'PlacesScreen'}/>
+                    style={[styles.button, activeButton === 'CraftScreen' && styles.activeButton]} 
+                    onPress={() => handleNavigate('CraftScreen')}>
+                    <Icons type={'craft'} active={activeButton === 'CraftScreen'}/>
                 </TouchableOpacity>
             </View>
         </View>

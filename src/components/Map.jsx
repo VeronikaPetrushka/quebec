@@ -5,9 +5,18 @@ import { useNavigation } from '@react-navigation/native';
 
 const { height } = Dimensions.get('window');
 
-const Map = ({ image, name, story }) => {
+const Map = ({ image, name, story, coordinates }) => {
   const [storedPlaces, setStoredPlaces] = useState([]);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const logStoredPlaces = async () => {
+      const places = await AsyncStorage.getItem('places');
+      console.log('Stored Places:', JSON.parse(places));
+    };
+  
+    logStoredPlaces();
+  }, []);  
 
   useEffect(() => {
     const storePlace = async () => {
@@ -17,7 +26,7 @@ const Map = ({ image, name, story }) => {
 
         const placeExists = parsedPlaces.some((place) => place.name === name);
         if (!placeExists) {
-          parsedPlaces.push({ image, name, story });
+          parsedPlaces.push({ image, name, story, coordinates });
           await AsyncStorage.setItem('places', JSON.stringify(parsedPlaces));
         }
 
@@ -28,7 +37,7 @@ const Map = ({ image, name, story }) => {
     };
 
     storePlace();
-  }, [image, name, story]);
+  }, [image, name, story, coordinates]);
 
   const renderPlace = ({ item }) => {
     return (
@@ -41,6 +50,7 @@ const Map = ({ image, name, story }) => {
               image: item.image,
               name: item.name,
               story: item.story,
+              coordinates: item.coordinates
             })
           }
         >

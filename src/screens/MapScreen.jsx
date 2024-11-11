@@ -3,13 +3,14 @@ import Map from "../components/Map"
 import MenuPanel from "../components/MenuPanel";
 
 const MapScreen = ({ route }) => {
-    const { image, name, story } = route.params
+    const { image, name, story, coordinates } = route.params
     return (
         <View style={styles.container}>
             <Map
                 image={image}
                 name={name}
                 story={story}
+                coordinates={coordinates}
              />
             <View style={styles.menu}>
                 <MenuPanel />

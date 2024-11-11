@@ -1,17 +1,11 @@
 import { View } from "react-native"
-import Details from "../components/Details"
+import Catalogue from "../components/Catalogue"
 import MenuPanel from "../components/MenuPanel";
 
-const DetailsScreen = ({ route }) => {
-    const { image, name, story, coordinates } = route.params
+const CatalogueScreen = () => {
     return (
         <View style={styles.container}>
-            <Details
-                image={image}
-                name={name}
-                story={story}
-                coordinates={coordinates}
-             />
+            <Catalogue />
             <View style={styles.menu}>
                 <MenuPanel />
             </View>
@@ -31,4 +25,4 @@ const styles = {
     }
 }
 
-export default DetailsScreen;
+export default CatalogueScreen;
