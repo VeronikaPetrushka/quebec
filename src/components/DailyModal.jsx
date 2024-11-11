@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import legends from '../constants/daily';
 import Icons from './Icons';
 
 const DailyModal = ({ visible, onClose }) => {
   const [currentLegendIndex, setCurrentLegendIndex] = useState(0);
   const [currentLegend, setCurrentLegend] = useState(legends[currentLegendIndex]);
+  const [rewardMessage, setRewardMessage] = useState('');
 
   useEffect(() => {
     if (!visible) return;
@@ -14,8 +16,23 @@ const DailyModal = ({ visible, onClose }) => {
     setCurrentLegendIndex(nextIndex);
     setCurrentLegend(legends[nextIndex]);
 
-  }, [visible]);
+    const updateScore = async () => {
+      try {
+        const storedScore = await AsyncStorage.getItem('totalScore');
+        const currentScore = storedScore ? parseInt(storedScore, 10) : 0;
+        const updatedScore = currentScore + legends[nextIndex].award;
 
+        await AsyncStorage.setItem('totalScore', updatedScore.toString());
+        setRewardMessage(
+          `Receive your daily award of ${legends[nextIndex].award} points! Your total score is now ${updatedScore}.`
+        );
+      } catch (error) {
+        console.error('Error updating totalScore:', error);
+      }
+    };
+
+    updateScore();
+  }, [visible]);
 
   return (
     <Modal
@@ -27,11 +44,14 @@ const DailyModal = ({ visible, onClose }) => {
       <View style={styles.modalBackground}>
         <View style={styles.modalContainer}>
           <Text style={styles.modalTitle}>{currentLegend.title}</Text>
-          <ScrollView style={{width: '100%'}}>
+          <ScrollView style={{ width: '100%' }}>
             <Text style={styles.modalDescription}>{currentLegend.description}</Text>
           </ScrollView>
+          {rewardMessage && (
+            <Text style={styles.rewardMessage}>{rewardMessage}</Text>
+          )}
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Icons type={'close'}/>
+            <Icons type={'close'} />
           </TouchableOpacity>
         </View>
       </View>
@@ -59,12 +79,18 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     marginBottom: 15,
     textAlign: 'center',
-    color: '#0A3D62'
+    color: '#0A3D62',
   },
   modalDescription: {
     fontSize: 17,
     textAlign: 'justify',
     marginBottom: 20,
+  },
+  rewardMessage: {
+    fontSize: 16,
+    color: '#FF6347',
+    marginTop: 15,
+    textAlign: 'center',
   },
   closeButton: {
     padding: 10,
@@ -73,7 +99,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     right: 10,
-}
+  },
 });
 
 export default DailyModal;
