@@ -11,7 +11,7 @@ const MenuPanel = () => {
 
     const handleNavigate = (screen) => {
         setActiveButton(screen);
-        setTimeout(() => navigation.navigate(screen), 0);
+        navigation.navigate(screen)
     };    
 
     useEffect(() => {
