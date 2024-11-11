@@ -51,6 +51,9 @@ const Settings = () => {
             await AsyncStorage.removeItem('totalScore');
             await AsyncStorage.removeItem('places');
             await AsyncStorage.removeItem('catalogue');
+            await AsyncStorage.removeItem('cityBook');
+            await AsyncStorage.removeItem('purchasedTopics');
+            await AsyncStorage.removeItem('crafts');
 
             setShowResetConfirmation(false);
 
@@ -148,7 +151,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: '#FFBE76'
+        color: '#FF6347'
     },
     toggleContainer: {
         padding: 7,
@@ -157,7 +160,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 1,
         borderRadius: 30,
-        borderColor: '#FFBE76',
+        borderColor: '#FF6347',
     },
     toggleContainerOff: {
         borderColor: '#3C3C3C',
@@ -177,7 +180,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     toggleOn: {
-        backgroundColor: '#FFBE76',
+        backgroundColor: '#FF6347',
         alignSelf: 'flex-end',
     },
     toggleOff: {
@@ -201,7 +204,7 @@ const styles = StyleSheet.create({
     },
     resetBtn: {
         width: '100%',
-        backgroundColor: '#3C3C3C',
+        backgroundColor: '#FFBE76',
         borderRadius: 15,
         padding: 15,
         alignItems: 'center',

@@ -4,12 +4,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import UserProfile from './UserProfile';
 import AboutModal from './AboutModal';
+import DailyModal from './DailyModal';
 
 const { height } = Dimensions.get('window');
 
 const Home = () => {
     const navigation = useNavigation();
     const [aboutModalVisible, setAboutModalVisible] = useState(false);
+    const [dailyModalVisible, setDailyModalVisible] = useState(true);
     const [userProfileModalVisible, setUserProfileModalVisible] = useState(false);
     const [uploadedImage, setUploadedImage] = useState({ uri: Image.resolveAssetSource(require('../assets/avatar/user.png')).uri });
     const [userName, setUserName] = useState('');  
@@ -41,6 +43,17 @@ const Home = () => {
         loadAvatar();
         loadName();
       }, []);
+
+      useEffect(() => {
+        const interval = setInterval(() => {
+            setDailyModalVisible(false);
+            setTimeout(() => {
+                setDailyModalVisible(true);
+            }, 500);
+        }, 86400000);
+
+        return () => clearInterval(interval);
+    }, []); 
 
       const closeUserProfileModal = async () => {
         setUserProfileModalVisible(false);
@@ -87,6 +100,7 @@ const Home = () => {
 
             </View>
 
+            <DailyModal visible={dailyModalVisible} onClose={() => setDailyModalVisible(false)} />
             <UserProfile visible={userProfileModalVisible} onClose={closeUserProfileModal}/>
             <AboutModal visible={aboutModalVisible} onClose={() => setAboutModalVisible(false)}/>
         </View>

@@ -19,6 +19,11 @@ import MapScreen from './src/screens/MapScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
 import CatalogueScreen from './src/screens/CatalogueScreen';
 import HistoryScreen from './src/screens/HistoryScreen';
+import BookScreen from './src/screens/BookScreen';
+import ArticleScreen from './src/screens/ArticleScreen';
+import CraftScreen from './src/screens/CraftScreen';
+import CraftDetailsScreen from './src/screens/CraftDetailsScreen';
+import ResultsScreen from './src/screens/ResultsScreen';
 
 enableScreens();
 
@@ -121,6 +126,31 @@ const App = () => {
                             <Stack.Screen 
                                 name="HistoryScreen" 
                                 component={HistoryScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="BookScreen" 
+                                component={BookScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="ArticleScreen" 
+                                component={ArticleScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="CraftScreen" 
+                                component={CraftScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="CraftDetailsScreen" 
+                                component={CraftDetailsScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="ResultsScreen" 
+                                component={ResultsScreen} 
                                 options={{ headerShown: false }} 
                             />
                         </Stack.Navigator>

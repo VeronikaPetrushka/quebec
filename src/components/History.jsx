@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     marginBottom: height * 0.02,
   },
   dateButton: {
+    height: height * 0.06,
     paddingVertical: 10,
     paddingHorizontal: 5,
     marginRight: 10,
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     height: height * 0.7,
     padding: 15,
     backgroundColor: "#f9f9f9",
-    borderRadius: 10,
+    borderRadius: 15,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 4 },
