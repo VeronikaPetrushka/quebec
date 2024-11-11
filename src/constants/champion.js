@@ -53,7 +53,9 @@ const champion = [
             correct: 'False' 
           },
         ],
-        image: require('../assets/champion/1.jpg')
+        image: require('../assets/champion/1.jpg'),
+        storyName: ' The Founding of Quebec and Its Role in New France',
+        story: 'Quebec was founded in 1608 by French explorer Samuel de Champlain, who established a settlement at a site known as Stadacona. The city became the capital of New France and played a key role in governing French territories in North America. From here, governors managed vast lands, including areas of the Great Lakes and the Mississippi River Valley.'
       },
       {
         topic: "Quebec’s Independence Movement",
@@ -109,7 +111,9 @@ const champion = [
             correct: 'False' 
           },
         ],
-        image: require('../assets/champion/2.jpg')
+        image: require('../assets/champion/2.jpg'),
+        storyName: 'Quebec — One of the Oldest Cities in North America',
+        story: 'Quebec is considered one of the oldest cities established by Europeans in North America. Old Quebec (Vieux-Québec) is a rare example of a fortified city on the continent that has been preserved to this day. Its walls and fortifications were constructed in the 17th century.'
       },
       {
         topic: "Quebec’s Economic Development",
@@ -165,7 +169,9 @@ const champion = [
             correct: 'True'
           },
         ],
-        image: require('../assets/champion/3.jpg')
+        image: require('../assets/champion/3.jpg'),
+        storyName: 'UNESCO World Heritage Site',
+        story: 'Old Quebec is the only fortified city in North America north of Mexico that has retained its original character. In 1985, Old Quebec was designated a UNESCO World Heritage Site due to its historical significance and well-preserved architecture.'
       },
       {
         topic: "Quebec's Climate and Geography",
@@ -221,7 +227,9 @@ const champion = [
             correct: 'True'
           },
         ],
-        image: require('../assets/champion/4.jpg')
+        image: require('../assets/champion/4.jpg'),
+        storyName: ' The Citadel of Quebec — The Largest British Fort in North America',
+        story: 'The Citadel of Quebec (La Citadelle) was built in the 18th and 19th centuries by the British to protect the city. It is the largest active fortress on the North American continent. Today, it remains the residence of the Canadian royal family when they visit the city and serves as the base for the Royal 22nd Regiment of Canada.'
       },
       {
         topic: "Quebec’s Political System",
@@ -277,7 +285,9 @@ const champion = [
             correct: 'False' 
           },
         ],
-        image: require('../assets/champion/5.jpg')
+        image: require('../assets/champion/5.jpg'),
+        storyName: 'The Wonder of Quebec’s Winter Carnival',
+        story: 'The Quebec Winter Carnival (Carnaval de Québec) is the largest winter carnival in the world. It has been held annually since 1955 and attracts hundreds of thousands of tourists. The celebration features traditions of winter festivities, including ice sculptures, parades, and the famous mascot, Bonhomme Carnaval.'
       },
       {
         topic: "Quebec’s Cultural Heritage",
@@ -333,7 +343,9 @@ const champion = [
             correct: 'True'
           },
         ],
-        image: require('../assets/champion/6.jpg')
+        image: require('../assets/champion/6.jpg'),
+        storyName: 'Terrasse Dufferin — A Popular Tourist Attraction',
+        story: 'Terrasse Dufferin is a famous promenade along the St. Lawrence River with views of the city and the river. Built in the 19th century, it is a favorite spot for tourists and locals. Visitors can enjoy picturesque landscapes and see the iconic Château Frontenac hotel.'
       },
       {
         topic: "Quebec’s Sports and Recreation",
@@ -389,7 +401,9 @@ const champion = [
             correct: 'False' 
           },
         ],
-        image: require('../assets/champion/7.jpg')
+        image: require('../assets/champion/7.jpg'),
+        storyName: 'Château Frontenac — The Most Photographed Hotel in the World',
+        story: 'The Château Frontenac hotel is one of the most recognizable buildings in Quebec. Built in 1893 as a luxury hotel, it has become a symbol of the city. This hotel is considered the most photographed in the world due to its unique castle-like architecture and central location in Old Quebec.'
       },
       {
         topic: "Quebec’s Indigenous Peoples",
@@ -445,7 +459,9 @@ const champion = [
             correct: 'False' 
           },
         ],
-        image: require('../assets/champion/8.jpg')
+        image: require('../assets/champion/8.jpg'),
+        storyName: 'The Historic Battle of the Plains of Abraham',
+        story: 'The Plains of Abraham is the site of one of the most significant battles in North American history. In 1759, a battle took place here between British and French troops, resulting in a British victory that ended French rule in Canada. Today, this site is a popular park for recreation.'
       },
       {
         topic: "Quebec’s Transportation and Infrastructure",
@@ -501,7 +517,9 @@ const champion = [
             correct: 'False' 
           },
         ],
-        image: require('../assets/champion/9.jpg')
+        image: require('../assets/champion/9.jpg'),
+        storyName: 'The Ice Road Quebec — Lévis',
+        story: 'One of Quebec`s unique features in winter was the Ice Road connecting Quebec and Lévis. Before the construction of bridges across the St. Lawrence River, an ice road ran between the two cities during winter. It featured temporary structures such as shops and even restaurants, creating an entire winter city on the ice.'
       },
       {
         topic: "Quebec’s Environmental Initiatives",
@@ -557,7 +575,9 @@ const champion = [
             correct: 'True' 
           },
         ],
-        image: require('../assets/champion/10.jpg')
+        image: require('../assets/champion/10.jpg'),
+        storyName: 'Quebec Parliament Hill — The Center of Political Life',
+        story: 'The Quebec Parliament building is the center of political life in the province. Constructed in 1886 in the Second Empire style, it draws attention with its elegant facades and statues of notable figures from Quebec`s history. Important government events take place here, and the complex is open for visits, including tours of the historic halls.'
       }
 ];
 

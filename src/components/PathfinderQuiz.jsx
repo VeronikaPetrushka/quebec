@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, FlatList } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import Icons from './Icons';
 
 const { height } = Dimensions.get('window');
 
 const PathfinderQuiz = ({ quiz }) => {
+  const navigation = useNavigation();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [originalOptions, setOriginalOptions] = useState([]);
   const [answered, setAnswered] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [correctOption, setCorrectOption] = useState(null);
+  const [quizEnded, setQuizEnded] = useState(false);
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(90);
   const [lives, setLives] = useState(3);
@@ -20,14 +25,39 @@ const PathfinderQuiz = ({ quiz }) => {
     skip: false,
   });
 
+  const [totalScore, setTotalScore] = useState(0);
+
   useEffect(() => {
-    if (timer > 0 && currentQuestionIndex < quiz.questions.length && lives > 0 && !showHints  && !showLives) {
-      const interval = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
+    const fetchTotalScore = async () => {
+      const storedScore = await AsyncStorage.getItem('totalScore');
+      if (storedScore) {
+        setTotalScore(parseInt(storedScore, 10));
+      }
+    };
+    fetchTotalScore();
+  }, []);
+
+  useEffect(() => {
+    const initOptions = quiz.questions.map(q => q.options);
+    setOriginalOptions(initOptions);
+  }, [quiz]);  
+
+  useEffect(() => {
+    let timerInterval;
+  
+    if (!quizEnded && !showHints && !showLives) {
+      timerInterval = setInterval(() => {
+        if (timer > 0 && !quizEnded) {
+          setTimer(timer - 1);
+        } else {
+          clearInterval(timerInterval);
+          setQuizEnded(true);
+        }
       }, 1000);
-      return () => clearInterval(interval);
     }
-  }, [timer, currentQuestionIndex, lives, showHints, showLives]);
+  
+    return () => clearInterval(timerInterval);
+  }, [timer, quizEnded, showHints, showLives]);
 
   useEffect(() => {
     if (!showHints && !showLives) {
@@ -42,7 +72,7 @@ const PathfinderQuiz = ({ quiz }) => {
   }, [currentQuestionIndex]);
 
   const handleOptionSelect = (option) => {
-    if (answered || timer === 0 || lives === 0) return;
+    if (answered || timer === 0 || lives === 0 || quizEnded) return;
 
     setSelectedOption(option);
 
@@ -55,16 +85,22 @@ const PathfinderQuiz = ({ quiz }) => {
       } else {
         setCorrectOption(quiz.questions[currentQuestionIndex].correct);
         setLives(lives - 1);
+
+        if (lives - 1 <= 0) {
+            setTimeout(() => {
+              setQuizEnded(true);
+            }, 1000);
+          }
       }
 
-      if (lives === 1) {
+      if (lives < 1 || currentQuestionIndex === quiz.questions.length - 1) {
         setTimeout(() => {
-          setCurrentQuestionIndex(quiz.questions.length);
+          setQuizEnded(true);
         }, 1000);
       }
 
       setTimeout(() => {
-        if (lives > 0) {
+        if (lives > 0 && !quizEnded) {
           setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
         setAnswered(false);
@@ -118,54 +154,71 @@ const PathfinderQuiz = ({ quiz }) => {
     ];
 
     return (
-      <FlatList
-        horizontal
-        data={Array(10).fill(hints).flat()}
-        keyExtractor={(_, index) => `hint-${index}`}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 10 }}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={[styles.hintCard, { opacity: score >= item.price ? 1 : 0.5 }]}
-            onPress={() => score >= item.price && handleHintSelect(item.id)}
-            disabled={score < item.price}
-          >
-            <Text style={styles.hintText}>{item.text}</Text>
-          </TouchableOpacity>
-        )}
-      />
+        <View style={styles.hintsContainer}>
+        <FlatList
+          horizontal
+          data={hints}
+          keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 10 }}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={[styles.hintCard, { opacity: score >= item.price ? 1 : 0.5 }]}
+              onPress={() => score >= item.price && handleHintSelect(item.id)}
+              disabled={score < item.price}
+            >
+              <View style={{width: height * 0.1, height: height * 0.1, marginBottom: height * 0.04}}>
+                <Icons type={'hint'} />
+              </View>
+              <Text style={styles.hintText}>{item.text}</Text>
+            </TouchableOpacity>
+          )}
+        />
+        <TouchableOpacity style={styles.closeButton} onPress={() => setShowHints(false)}>
+          <Text style={styles.closeButtonText}>Close</Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
   const renderLives = () => {
     const livesOptions = [
-      { id: 1, text: '1 Life - 50 Points', price: 50 },
-      { id: 2, text: '2 Lives - 75 Points', price: 75 },
-      { id: 3, text: '3 Lives - 100 Points', price: 100 },
+      { id: 1, text: '1 - 50 Points', price: 50 },
+      { id: 2, text: '2 - 75 Points', price: 75 },
+      { id: 3, text: '3 - 100 Points', price: 100 },
     ];
 
     return (
-      <FlatList
-        horizontal
-        data={Array(10).fill(livesOptions).flat()}
-        keyExtractor={(_, index) => `life-${index}`}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 10 }}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={[
-              styles.hintCard,
-              {
-                opacity: score >= item.price && lives + item.id <= 3 ? 1 : 0.5,
-              },
-            ]}
-            onPress={() => handleLifePurchase(item.id)}
-            disabled={score < item.price || lives + item.id > 3}
-          >
-            <Text style={styles.hintText}>{item.text}</Text>
-          </TouchableOpacity>
-        )}
-      />
+        <View style={styles.hintsContainer}>
+        <FlatList
+          horizontal
+          data={livesOptions}
+          keyExtractor={(_, index) => `life-${index}`}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 10 }}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={[
+                styles.hintCard,
+                {
+                  opacity: score >= item.price && lives + item.id <= 3 ? 1 : 0.5,
+                  flexDirection: 'row'
+                },
+              ]}
+              onPress={() => handleLifePurchase(item.id)}
+              disabled={score < item.price || lives + item.id > 3}
+            >
+              <View style={{width: height * 0.1, height: height * 0.1, marginRight: 5}}>
+                <Icons type={'heart'} />
+              </View>
+              <Text style={styles.hintText}>{item.text}</Text>
+            </TouchableOpacity>
+          )}
+        />
+        <TouchableOpacity style={styles.closeButton} onPress={() => setShowLives(false)}>
+          <Text style={styles.closeButtonText}>Close</Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
@@ -176,11 +229,11 @@ const PathfinderQuiz = ({ quiz }) => {
     return (
       <View style={styles.questionContainer}>
         <Text style={styles.question}>{question.question}</Text>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: height * 0.01 }}>
           <Text style={styles.timer}>{formatTime(timer)}</Text>
           <Text style={styles.timer}>{score}</Text>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: height * 0.01 }}>
           <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => setShowLives(true)}>
             {[...Array(3)].map((_, index) => (
               <View key={index} style={styles.heart}>
@@ -218,11 +271,74 @@ const PathfinderQuiz = ({ quiz }) => {
     );
   };
 
+  useEffect(() => {
+    if (quizEnded) {
+      const handleFinish = async () => {
+        const newTotalScore = totalScore + score;
+        setTotalScore(newTotalScore);
+        
+        await AsyncStorage.setItem('totalScore', newTotalScore.toString());
+      };
+      
+      handleFinish();
+    }
+  }, [quizEnded]);
+
+  const handleRetry = () => {
+    setCurrentQuestionIndex(0);
+    setAnswered(false);
+    setSelectedOption(null);
+    setCorrectOption(null);
+    setLives(3);
+    setScore(0);
+    setTimer(60);
+    setQuizEnded(false);
+    setHintsUsed({ skip: false, showAnswer: false });
+  
+    quiz.questions.forEach((question, index) => {
+      question.options = originalOptions[index];
+    });
+  };
+  
+  
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
   const renderFinish = () => {
     return (
       <View style={styles.endMessageContainer}>
         <Text style={styles.endMessage}>Quiz Finished!</Text>
         <Text style={styles.endMessage}>Your final score is: {score}</Text>
+        <Text style={styles.endMessage}>Total score: {totalScore}</Text>
+
+        {quizEnded && (
+        <>
+          {lives === 0 || timer === 0 ? (
+            <View style={{width: '100%', marginTop: height * 0.08}}>
+              <Text style={styles.finishText}>Good try! You’re learning more with each step!</Text>
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.retryButton} onPress={handleRetry}>
+                  <Text style={styles.buttonText}>Try Again</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.goBackButton} onPress={handleGoBack}>
+                  <Text style={styles.buttonText}>Go Back</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          ) : currentQuestionIndex === quiz.questions.length ? (
+            <View style={{width: '100%', marginTop: height * 0.05}}>
+              <Text style={styles.finishText}> Fantastic! You’ve uncovered a new corner of Quebec—explore its mysteries!</Text>
+              <TouchableOpacity style={styles.openButton} onPress={''}>
+                <Text style={styles.buttonText}>Open</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.goBackSuccess} onPress={handleGoBack}>
+                <Text style={styles.buttonText}>Go Back</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
+        </>
+      )}
       </View>
     );
   };
@@ -237,13 +353,13 @@ const PathfinderQuiz = ({ quiz }) => {
     <View style={styles.container}>
       <Text style={styles.topic}>{quiz.topic}</Text>
       <Image source={quiz.image} style={styles.image} />
-      {showHints ? (
+      {quizEnded ? renderFinish() : showHints ? (
         renderHints()
-        ) : showLives ? (
+      ) : showLives ? (
         renderLives()
-        ) : timer > 0 && currentQuestionIndex < quiz.questions.length ? (
+      ) : currentQuestionIndex < quiz.questions.length ? (
         renderQuestion()
-        ) : (
+      ) : (
         renderFinish()
       )}
     </View>
@@ -255,8 +371,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: height * 0.08,
-    justifyContent: 'center',
+    paddingTop: height * 0.07,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#FDF3E7'
   },
   topic: {
     fontSize: 24,
@@ -269,15 +387,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'red',
+    color: '#FF6347',
   },
   questionContainer: {
     marginBottom: height * 0.02,
+    width: '100%'
   },
   question: {
     fontSize: 18,
     fontWeight: '600',
-    marginBottom: height * 0.02,
+    marginBottom: height * 0.01,
     textAlign: 'center',
     color: '#3C3C3C',
   },
@@ -285,28 +404,29 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   option: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#FFBE76',
     padding: 15,
     marginBottom: 10,
-    borderRadius: 5,
+    borderRadius: 10,
     alignItems: 'center',
   },
   optionText: {
     fontSize: 16,
-    color: '#333',
+    color: '#3C3C3C',
+    fontWeight: '700'
   },
   correctOption: {
     backgroundColor: 'green',
     padding: 15,
     marginBottom: 10,
-    borderRadius: 5,
+    borderRadius: 10,
     alignItems: 'center',
   },
   incorrectOption: {
     backgroundColor: 'red',
     padding: 15,
     marginBottom: 10,
-    borderRadius: 5,
+    borderRadius: 10,
     alignItems: 'center',
   },
   endMessageContainer: {
@@ -328,12 +448,17 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
   },
+  hintsContainer: {
+    height: '50%'
+  },
   hintCard: {
     backgroundColor: '#fff',
     padding: 20,
     marginHorizontal: 10,
     borderRadius: 10,
     alignItems: 'center',
+    justifyContent: 'center',
+    height: height * 0.35
   },
   hintText: {
     fontSize: 16,
@@ -348,6 +473,69 @@ const styles = StyleSheet.create({
     borderColor: '#3C3C3C',
     marginBottom: height * 0.03,
   },
+  closeButton: {
+    backgroundColor: 'red',
+    padding: 7,
+    paddingHorizontal: 50,
+    borderRadius: 10,
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 10,
+    right: '30%'
+  },
+  closeButtonText: {
+    color: '#fff',
+    fontWeight: '300',
+    fontSize: 17
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  retryButton: {
+    backgroundColor: '#FFBE76',
+    padding: 15,
+    borderRadius: 10,
+    flex: 1,
+    alignItems: 'center',
+  },
+  goBackButton: {
+    backgroundColor: '#FF6347',
+    padding: 15,
+    borderRadius: 10,
+    flex: 1,
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  openButton: {
+    backgroundColor: '#FFBE76',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginBottom: height * 0.01,
+  },
+  goBackSuccess: {
+    backgroundColor: '#FF6347',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+
+  buttonText: {
+    fontSize: 16,
+    fontWeight: '900',
+    color: '#fff',
+  },
+  finishText: {
+    fontSize: 20,
+    fontWeight: '400',
+    color: '#0A3D62',
+    textAlign: 'center',
+    marginBottom: height * 0.02
+  }
 });
 
 export default PathfinderQuiz;
