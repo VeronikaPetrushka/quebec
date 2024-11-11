@@ -65,7 +65,12 @@ const pathfinder = [
             correct: "Jacques Cartier",
         },
         ],
-        image: require('../assets/pathfinder/1.jpg')
+        image: require('../assets/pathfinder/1.jpg'),
+        factName: 'The Oldest Grocery Store in Canada ',
+        fact: 'J.A. Moisan, opened in 1871, is the oldest operating grocery store in Canada. It offers a wide range of local products and delicacies.',
+        storyName: 'Château Frontenac: The Iconic Hotel Overlooking Quebec City',
+        storyImage: require('../assets/map/1.jpg'),
+        story: 'Château Frontenac is perhaps the most famous landmark in Quebec, often described as the most photographed hotel in the world. This luxurious hotel dominates the skyline of Old Quebec, sitting atop Cap Diamant with breathtaking views of the St. Lawrence River. Opened in 1893, it was designed by American architect Bruce Price as part of a series of grand railway hotels built by the Canadian Pacific Railway. Château Frontenac has hosted numerous world leaders, including Winston Churchill and Franklin D. Roosevelt during World War II. Its distinctive green copper roofs, turrets, and historical charm make it a must-visit for tourists exploring the heritage of Quebec City.'
     },
     {
         topic: "Geography of Quebec",
@@ -125,7 +130,12 @@ const pathfinder = [
             correct: "Nunavik",
           },
         ],
-        image: require('../assets/pathfinder/2.jpg')
+        image: require('../assets/pathfinder/2.jpg'),
+        factName: 'Wine Cellars of Château Frontenac',
+        fact: 'The Château Frontenac hotel has wine cellars that store over 12,000 bottles of wine. This historic hotel is known not only for its appearance but also for its outstanding wine collection.',
+        storyName: 'Vieux-Québec: The Historic Heart of the City',
+        storyImage: require('../assets/map/2.jpg'),
+        story: 'Vieux-Québec, or Old Quebec, is the crown jewel of Quebec City’s historic charm. This UNESCO World Heritage Site is divided into Upper Town (Haute-Ville) and Lower Town (Basse-Ville), both rich in history and culture. Cobblestone streets, centuries-old buildings, and stunning architectural landmarks such as the Château Frontenac and Notre-Dame de Québec Basilica-Cathedral make this district a living museum. Visitors can stroll along Rue du Petit-Champlain, one of the oldest shopping streets in North America, or visit the historic Place Royale, where Samuel de Champlain founded Quebec in 1608. The preservation of Old Quebec offers an authentic glimpse into the city’s French colonial past.'
       },
       {
         topic: "Culture and Traditions",
@@ -181,7 +191,12 @@ const pathfinder = [
             correct: "Skiing",
           },
         ],
-        image: require('../assets/pathfinder/3.jpg')
+        image: require('../assets/pathfinder/3.jpg'),
+        factName: 'Quebec — Home to Canada’s First Public Theaters',
+        fact: 'Quebec was home to one of Canada`s first public theaters, the Théâtre de Neptune, which staged performances on water in honor of King Louis XIII`s visit in the early 17th century.',
+        storyName: 'La Citadelle de Québec: The Stronghold of Canadian Military History',
+        storyImage: require('../assets/map/3.jpg'),
+        story: 'The Citadel of Quebec, or La Citadelle, is a star-shaped fortress built between 1820 and 1850. It remains an active military installation and is the official residence of the Governor General of Canada. Located on Cap Diamant, the Citadel offers panoramic views of the city and the St. Lawrence River. Its construction was intended to defend the city from potential American attacks after the War of 1812. Visitors can explore the site through guided tours, witness the changing of the guard, and learn about the history of the Royal 22nd Regiment, one of Canada`s most decorated military units. The Citadel also houses a museum that delves into Quebec`s military past and its role in defending the nation.'
       },
       {
         topic: "Politics and Government",
@@ -241,7 +256,12 @@ const pathfinder = [
             correct: "1774",
           },
         ],
-        image: require('../assets/pathfinder/4.jpg')
+        image: require('../assets/pathfinder/4.jpg'),
+        factName: 'Pierre Laporte Bridge — Canada`s Largest Suspension Bridge',
+        fact: 'The Pierre Laporte Bridge, connecting Quebec City with Lévis across the Saint Lawrence River, is the longest suspension bridge in Canada, measuring 1,040 meters in length.',
+        storyName: 'Place d’Armes: The Historic Gathering Spot of Quebec City',
+        storyImage: require('../assets/map/4.jpg'),
+        story: 'Place d’Armes is a historic square located next to Château Frontenac in Upper Town, Quebec City. This central square has long been a gathering place for the city’s residents, hosting important events and public ceremonies over the centuries. In the colonial era, it served as a parade ground for soldiers. Today, the square is surrounded by beautiful statues and benches, offering a picturesque setting for locals and tourists alike to relax and enjoy the ambiance of Old Quebec. At the center stands a monument to Samuel de Champlain, paying tribute to the founder of Quebec. Place d’Armes serves as a symbolic and cultural hub, linking the city’s past to its present.'
       },
       {
         topic: "Famous Landmarks",
@@ -309,7 +329,12 @@ const pathfinder = [
             correct: "The Citadel Walls",
           },
         ],
-        image: require('../assets/pathfinder/5.jpg')
+        image: require('../assets/pathfinder/5.jpg'),
+        factName: 'The Star Flag of Quebec',
+        fact: 'In 1948, Quebec became the first Canadian province to adopt its official flag — a blue field with a white cross and four lilies, known as the "Fleurdelisé."',
+        storyName: 'Quartier Petit Champlain: The Oldest Commercial District in North America',
+        storyImage: require('../assets/map/5.jpg'),
+        story: 'Quartier Petit Champlain is one of the most charming neighborhoods in Quebec City, known for its narrow, winding streets, historic buildings, and quaint boutiques. This pedestrian-friendly district, located in Lower Town, is among the oldest commercial districts in North America. Visitors can explore an array of local shops, cafes, and art galleries that retain the atmosphere of a bygone era. The neighborhood is also home to the Breakneck Stairs (Escalier Casse-Cou), the oldest staircase in Quebec City, which connects Upper and Lower Town. Petit Champlain’s intimate, village-like atmosphere, combined with its rich historical legacy, makes it a favorite for both locals and visitors.'
       },
       {
         topic: "Quebec’s Economy",
@@ -365,7 +390,12 @@ const pathfinder = [
             correct: "Cheese",
           },
         ],
-        image: require('../assets/pathfinder/6.jpg')
+        image: require('../assets/pathfinder/6.jpg'),
+        factName: 'Volcanic Past',
+        fact: 'The area`s volcanic history can be traced through ancient volcanic sites nearby, which contribute to the unique soil diversity in the region, benefiting local grape cultivation.',
+        storyName: 'The Plains of Abraham: Battlefield Turned Urban Park',
+        storyImage: require('../assets/map/6.jpg'),
+        story: 'The Plains of Abraham, now a beautiful urban park, is the site of the famous 1759 Battle of Quebec, where British forces under General James Wolfe defeated the French army led by General Louis-Joseph de Montcalm. This battle was a turning point in the Seven Years` War and marked the beginning of British control over Quebec. Today, the Plains of Abraham are part of the Battlefields Park, offering scenic green spaces for outdoor activities such as walking, picnicking, and cross-country skiing. The park also features museums and monuments commemorating the battle and Quebec’s rich military history.'
       },   
       {
         topic: "Festivals and Events",
@@ -449,7 +479,12 @@ const pathfinder = [
             correct: "Fantasia International Film Festival",
           },
         ],
-        image: require('../assets/pathfinder/7.jpg')
+        image: require('../assets/pathfinder/7.jpg'),
+        factName: 'Laurentian Library of Quebec',
+        fact: 'The Laurentian Library in Quebec is the oldest public library in Canada, opened in 1844. It offers a vast collection of historical documents and books',
+        storyName: 'Notre-Dame de Québec Basilica-Cathedral: The Spiritual Heart of Quebec',
+        storyImage: require('../assets/map/7.jpg'),
+        story: 'Notre-Dame de Québec Basilica-Cathedral, built in 1647, holds the distinction of being one of the oldest Catholic churches in North America. This historic church has played a central role in the religious and cultural life of Quebec for centuries. The basilica is renowned for its beautiful architecture, stunning stained-glass windows, and the tomb of François de Laval, the first bishop of Quebec. Over the years, it has undergone several reconstructions due to fires, but its historical significance and spiritual importance remain intact. The basilica is also the only church in North America with a Holy Door, symbolizing its connection to the Vatican.'
       },
       {
         topic: "Architecture in Quebec",
@@ -513,7 +548,12 @@ const pathfinder = [
             correct: "Quebec City",
           },
         ],
-        image: require('../assets/pathfinder/8.jpg')
+        image: require('../assets/pathfinder/8.jpg'),
+        factName: 'The First University of French Canada',
+        fact: 'Laval University, founded in 1852, is the first French-speaking university in North America. It played a crucial role in the education and development of Quebec.',
+        storyName: 'Montmorency Falls: The Majestic Cascade Near Quebec City',
+        storyImage: require('../assets/map/8.jpg'),
+        story: 'Montmorency Falls, located just a short drive from Quebec City, is one of the region’s most breathtaking natural attractions. At 83 meters (272 feet) high, it is significantly taller than Niagara Falls, offering visitors stunning views of the cascading water. The falls are part of Montmorency Falls Park, where visitors can enjoy walking trails, cable car rides, and a suspension bridge that offers a bird’s-eye view of the falls. In winter, the falls freeze, creating an impressive ice formation known as the “Sugarloaf,” which attracts ice climbers. Montmorency Falls is a must-see destination for nature lovers and adventurers visiting Quebec.'
       },
       {
         topic: "Famous People from Quebec",
@@ -570,7 +610,12 @@ const pathfinder = [
             correct: "Lara Fabian",
           },
         ],
-        image: require('../assets/pathfinder/9.jpg')
+        image: require('../assets/pathfinder/9.jpg'),
+        factName: 'Quebec Museum of Civilization',
+        fact: 'The Museum of Civilization in Quebec City opened in 1988 and is now one of the most visited museums in Canada, offering interactive exhibits focused on the history and culture of Quebec and the world.',
+        storyName: 'Musée national des beaux-arts du Québec: A Treasure Trove of Canadian Art',
+        storyImage: require('../assets/map/9.jpg'),
+        story: 'The Musée national des beaux-arts du Québec (MNBAQ) is one of Canada’s premier art museums, located in the heart of Quebec City’s Battlefields Park. The museum’s collection spans centuries of Canadian art, from historical works to contemporary pieces. It features a wide array of paintings, sculptures, and decorative arts, with a special focus on the artists of Quebec and the broader Francophone world. The museum’s modern architecture, combined with its historic pavilion, offers a unique experience for visitors. The MNBAQ also hosts temporary exhibitions, making it a dynamic cultural space that continually showcases the richness of Quebec’s artistic heritage.'
       },
       {
         topic: "Nature and National Parks",
@@ -646,7 +691,12 @@ const pathfinder = [
             correct: "Ice climbing",
           },
         ],
-        image: require('../assets/pathfinder/10.jpg')
+        image: require('../assets/pathfinder/10.jpg'),
+        factName: 'The Famous Casse-Cou Stairs',
+        fact: 'The Casse-Cou Stairs (L`Escalier Casse-Cou) is one of the most well-known historical landmarks in Quebec, leading from Upper Town to Lower Town. Its name translates to "neck-breaking stairs" due to its steepness.',
+        storyName: 'Musée de la civilisation: Exploring Quebec’s Culture and History',
+        storyImage: require('../assets/map/10.jpg'),
+        story: 'Musée de la civilisation, located in Old Quebec, is a modern museum that provides an immersive exploration of the culture, history, and peoples of Quebec. With its interactive exhibits and innovative displays, the museum appeals to visitors of all ages. It covers a wide range of topics, from the history of Indigenous peoples in the region to Quebec’s role in the global context. The museum is housed in a stunning architectural blend of contemporary design and historic elements, including the restored remains of a 17th-century home. Through its diverse exhibitions, Musée de la civilisation offers a deeper understanding of Quebec’s unique identity and heritage.'
       },                                     
 ];
 

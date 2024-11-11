@@ -15,6 +15,8 @@ import QuizModeScreen from './src/screens/QuizModeScreen';
 import TopicsScreen from './src/screens/TopicsScreen';
 import PathfinderQuizScreen from './src/screens/PathfinderQuizScreen';
 import ChampionQuizScreen from './src/screens/ChampionQuizScreen';
+import MapScreen from './src/screens/MapScreen';
+import DetailsScreen from './src/screens/DetailsScreen';
 
 enableScreens();
 
@@ -97,6 +99,16 @@ const App = () => {
                             <Stack.Screen 
                                 name="ChampionQuizScreen" 
                                 component={ChampionQuizScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="MapScreen" 
+                                component={MapScreen} 
+                                options={{ headerShown: false }} 
+                            />
+                            <Stack.Screen 
+                                name="DetailsScreen" 
+                                component={DetailsScreen} 
                                 options={{ headerShown: false }} 
                             />
                         </Stack.Navigator>

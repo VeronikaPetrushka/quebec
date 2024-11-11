@@ -49,6 +49,7 @@ const Settings = () => {
             await AsyncStorage.setItem('userProfile', "");
             await AsyncStorage.removeItem('uploadedImage');
             await AsyncStorage.removeItem('totalScore');
+            await AsyncStorage.removeItem('places');
 
             setShowResetConfirmation(false);
 

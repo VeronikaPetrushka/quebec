@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Modal, ScrollView, StyleSheet, Dimensions, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import Icons from './Icons';
@@ -24,6 +24,8 @@ const PathfinderQuiz = ({ quiz }) => {
     answerTwice: false,
     skip: false,
   });
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [totalScore, setTotalScore] = useState(0);
 
@@ -315,8 +317,12 @@ const PathfinderQuiz = ({ quiz }) => {
         {quizEnded && (
         <>
           {lives === 0 || timer === 0 ? (
-            <View style={{width: '100%', marginTop: height * 0.08}}>
-              <Text style={styles.finishText}>Good try! You’re learning more with each step!</Text>
+            <View style={{width: '100%', marginTop: height * 0.03}}>
+              <Text style={styles.finishText}>Almost there! Consolation fact: Did you know that…</Text>
+
+              <TouchableOpacity style={[styles.openButton, {backgroundColor: '#ff9927'}]} onPress={() => setModalVisible(true)}>
+                <Text style={styles.buttonText}>Read more</Text>
+              </TouchableOpacity>
               <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.retryButton} onPress={handleRetry}>
                   <Text style={styles.buttonText}>Try Again</Text>
@@ -327,9 +333,15 @@ const PathfinderQuiz = ({ quiz }) => {
               </View>
             </View>
           ) : currentQuestionIndex === quiz.questions.length ? (
-            <View style={{width: '100%', marginTop: height * 0.05}}>
+            <View style={{width: '100%', marginTop: height * 0.02}}>
               <Text style={styles.finishText}> Fantastic! You’ve uncovered a new corner of Quebec—explore its mysteries!</Text>
-              <TouchableOpacity style={styles.openButton} onPress={''}>
+              <TouchableOpacity 
+                style={styles.openButton} 
+                onPress={() => navigation.navigate('MapScreen', {
+                    image: quiz.storyImage,
+                    name: quiz.storyName, 
+                    story: quiz.story
+                })}>
                 <Text style={styles.buttonText}>Open</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.goBackSuccess} onPress={handleGoBack}>
@@ -362,6 +374,25 @@ const PathfinderQuiz = ({ quiz }) => {
       ) : (
         renderFinish()
       )}
+
+        <Modal
+            transparent={true}
+            visible={modalVisible}
+            animationType="fade"
+            onRequestClose={() => setModalVisible(false)}
+        >
+            <View style={styles.modalContainer}>
+                <View style={styles.modalContent}>
+                <ScrollView style={styles.ScrollView}>
+                    <Text style={styles.title}>{quiz.factName}</Text>
+                    <Text style={styles.modalText}>{quiz.fact}</Text>
+                    </ScrollView>
+                    <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+                        <Icons type={'close'}/>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </Modal>
     </View>
   );
 };
@@ -493,7 +524,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+    marginTop: height * 0.01,
+    marginBottom: height * 0.02
   },
   retryButton: {
     backgroundColor: '#FFBE76',
@@ -534,7 +566,43 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#0A3D62',
     textAlign: 'center',
-    marginBottom: height * 0.02
+    marginBottom: height * 0.03
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalContent: {
+      width: '90%',
+      height: '60%',
+      padding: 20,
+      paddingTop: 50,
+      backgroundColor: 'white',
+      borderRadius: 15,
+      alignItems: 'center',
+      justifyContent: 'space-between',
+  },
+  modalText: {
+      fontSize: 19,
+      textAlign: 'center',
+      color: '#3C3C3C'
+  },
+  title: {
+    fontSize: 22,
+    marginBottom: 15,
+    textAlign: 'center',
+    color: '#0A3D62',
+    fontWeight: '800'
+  },
+  closeButton: {
+      padding: 10,
+      width: 42,
+      height: 42,
+      position: 'absolute',
+      top: 10,
+      right: 10,
   }
 });
 
