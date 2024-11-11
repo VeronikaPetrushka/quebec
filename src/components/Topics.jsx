@@ -24,8 +24,8 @@ const Topics = ({ difficulty }) => {
             <ScrollView style={{width: '100%'}}>
                 <View style={styles.btnContainer}>
                     {difficulty === 'pathfinder' && pathfinder.map((item, index) => (
-                        <View style={{width: '40%', marginBottom: height * 0.015, alignItems: 'center'}}>
-                            <TouchableOpacity key={index} style={styles.btn} onPress={() => handleNavigation(item, 'pathfinder')}>
+                        <View key={index} style={{width: '40%', marginBottom: height * 0.015, alignItems: 'center'}}>
+                            <TouchableOpacity style={styles.btn} onPress={() => handleNavigation(item, 'pathfinder')}>
                                 <Image source={item.image} style={styles.image}/>
                             </TouchableOpacity>
                             <Text style={styles.btnText}>{item.topic}</Text>
@@ -37,8 +37,8 @@ const Topics = ({ difficulty }) => {
             <ScrollView style={{width: '100%'}}>
                 <View style={styles.btnContainer}>
                     {difficulty === 'champion' && champion.map((item, index) => (
-                        <View style={{width: '40%', marginBottom: height * 0.015, alignItems: 'center'}}>
-                            <TouchableOpacity key={index} style={styles.btn}  onPress={() => handleNavigation(item, 'champion')}>
+                        <View key={index} style={{width: '40%', marginBottom: height * 0.015, alignItems: 'center'}}>
+                            <TouchableOpacity style={styles.btn} onPress={() => handleNavigation(item, 'champion')}>
                                 <Image source={item.image} style={styles.image}/>
                             </TouchableOpacity>
                             <Text style={styles.btnText}>{item.topic}</Text>
