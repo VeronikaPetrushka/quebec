@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image, ImageBackground } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import UserProfile from './UserProfile';
 import AboutModal from './AboutModal';
 import DailyModal from './DailyModal';
@@ -39,10 +39,12 @@ const Home = () => {
         }
       };
     
-      useEffect(() => {
-        loadAvatar();
-        loadName();
-      }, []);
+      useFocusEffect(
+        useCallback(() => {
+            loadAvatar();
+            loadName();
+        }, [])
+    );
 
       useEffect(() => {
         const interval = setInterval(() => {
