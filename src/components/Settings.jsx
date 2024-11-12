@@ -75,7 +75,7 @@ const Settings = () => {
             {showResetConfirmation ? (
                 <>
                     <Text style={styles.confirmationText}>
-                        Are you sure you want to reset your progress? It will reset your account, score, catalogue, crafts, articles, and collected places from pathfinder quiz !
+                    Are you sure you want to reset your account? This action will delete your profile, including your user name, uploaded photo, score, catalogue, crafts, articles, and collected places from pathfinder quiz !
                     </Text>
                     <TouchableOpacity style={styles.resetBtn} onPress={handleReset}>
                         <Text style={styles.btnText}>Reset</Text>
