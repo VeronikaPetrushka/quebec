@@ -117,7 +117,7 @@ const UserProfile = ({ visible, onClose }) => {
                       <TextInput
                         value={name}
                         placeholder="Enter your name"
-                        placeholderTextColor="#0A3D62"
+                        placeholderTextColor="#432887"
                         onChangeText={handleNameChange}
                         style={styles.input}
                       />
@@ -185,7 +185,7 @@ const styles = {
     fontWeight: "bold",
     marginBottom: 20,
     marginTop: -15,
-    color: '#0A3D62'
+    color: '#432887'
   },
 
   avatarPlaceholder: {
@@ -220,11 +220,11 @@ const styles = {
     paddingHorizontal: 20,
     marginTop: height * 0.05,
     borderWidth: 1,
-    borderColor: "#0A3D62",
+    borderColor: "#432887",
     borderRadius: 10,
     width: "100%",
     fontSize: 17,
-    color: '#0A3D62',
+    color: '#432887',
   },
 
   btnCreate: {
@@ -235,7 +235,7 @@ const styles = {
     marginBottom: 10,
     position: 'absolute',
     bottom: height * 0.08,
-    backgroundColor: '#FFBE76',
+    backgroundColor: '#8454ff',
   },
 
   btnCreateText: {

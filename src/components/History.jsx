@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions, PanResponder } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Dimensions, PanResponder, ImageBackground } from "react-native";
 import { history } from '../constants/history.js';
 
 const { height, width } = Dimensions.get("window");
@@ -25,6 +25,7 @@ const History = () => {
   };
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
     <View style={styles.container}>
       <View style={styles.scrollLine}>
         <View
@@ -62,6 +63,7 @@ const History = () => {
         </ScrollView>
       </View>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -71,7 +73,6 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: height * 0.07,
     paddingBottom: height * 0.12,
-    backgroundColor: '#FDF3E7'
   },
   scrollLine: {
     height: 10,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 5,
     marginRight: 10,
-    backgroundColor: "#FFBE76",
+    backgroundColor: "#8454ff",
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
     fontSize: 21,
     fontWeight: '800',
     marginBottom: 10,
-    color: '#0A3D62',
+    color: '#432887',
     textAlign: 'center'
   },
   content: {

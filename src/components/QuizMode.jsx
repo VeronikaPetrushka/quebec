@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions, Modal } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions, Modal, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const { height } = Dimensions.get("window");
@@ -24,6 +24,7 @@ const QuizMode = () => {
   };
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
     <View style={styles.container}>
       <Text style={styles.title}>Quiz Mode</Text>
 
@@ -80,6 +81,7 @@ const QuizMode = () => {
         </View>
       </Modal>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -91,14 +93,13 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     padding: 30,
     paddingTop: height * 0.07,
-    backgroundColor: "#FDF3E7",
   },
   title: {
     fontWeight: "bold",
     fontSize: 34,
     textAlign: "center",
     marginBottom: height * 0.3,
-    color: "#0A3D62",
+    color: "#FDF3E7",
   },
   btn: {
     padding: 20,
@@ -106,8 +107,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     borderWidth: 0.5,
-    borderColor: "#3C3C3C",
-    backgroundColor: "#FFBE76",
+    borderColor: "#fff",
+    backgroundColor: "#8454ff",
     borderRadius: 12,
     marginBottom: 10,
     zIndex: 10,
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#3C3C3C",
+    color: "#fff",
   },
   modalOverlay: {
     flex: 1,
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 22,
     fontWeight: "bold",
-    color: "#0A3D62",
+    color: "#432887",
     marginBottom: 10,
   },
   modalText: {
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
   },
   proceedButton: {
     padding: 10,
-    backgroundColor: "#FFBE76",
+    backgroundColor: "#8454ff",
     borderRadius: 10,
     flex: 1,
     alignItems: "center",

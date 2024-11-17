@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, Modal, ScrollView, StyleSheet, Dimensions, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Modal, ScrollView, StyleSheet, Dimensions, FlatList, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import Icons from './Icons';
@@ -320,7 +320,7 @@ const PathfinderQuiz = ({ quiz }) => {
             <View style={{width: '100%', marginTop: height * 0.03}}>
               <Text style={styles.finishText}>Almost there! Consolation fact: Did you know that…</Text>
 
-              <TouchableOpacity style={[styles.openButton, {backgroundColor: '#ff9927'}]} onPress={() => setModalVisible(true)}>
+              <TouchableOpacity style={[styles.openButton, {backgroundColor: '#A4A0E6'}]} onPress={() => setModalVisible(true)}>
                 <Text style={styles.buttonText}>Read more</Text>
               </TouchableOpacity>
               <View style={styles.buttonContainer}>
@@ -363,6 +363,7 @@ const PathfinderQuiz = ({ quiz }) => {
   };
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
     <View style={styles.container}>
       <Text style={styles.topic}>{quiz.topic}</Text>
       <Image source={quiz.image} style={styles.image} />
@@ -388,13 +389,14 @@ const PathfinderQuiz = ({ quiz }) => {
                     <Text style={styles.title}>{quiz.factName}</Text>
                     <Text style={styles.modalText}>{quiz.fact}</Text>
                     </ScrollView>
-                    <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+                    <TouchableOpacity style={styles.closeBtn} onPress={() => setModalVisible(false)}>
                         <Icons type={'close'}/>
                     </TouchableOpacity>
                 </View>
             </View>
         </Modal>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -406,14 +408,13 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.07,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#FDF3E7'
   },
   topic: {
     fontSize: 24,
     fontWeight: '800',
     marginBottom: 20,
     textAlign: 'center',
-    color: '#0A3D62',
+    color: '#FDF3E7',
   },
   timer: {
     fontSize: 20,
@@ -430,13 +431,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: height * 0.01,
     textAlign: 'center',
-    color: '#3C3C3C',
+    color: '#FDF3E7',
   },
   optionsContainer: {
     marginTop: 10,
   },
   option: {
-    backgroundColor: '#FFBE76',
+    backgroundColor: '#8454ff',
     padding: 15,
     marginBottom: 10,
     borderRadius: 10,
@@ -444,7 +445,7 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 16,
-    color: '#3C3C3C',
+    color: '#fff',
     fontWeight: '700'
   },
   correctOption: {
@@ -469,7 +470,7 @@ const styles = StyleSheet.create({
   endMessage: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#333',
+    color: '#fff',
   },
   heart: {
     width: 35,
@@ -529,14 +530,14 @@ const styles = StyleSheet.create({
     marginBottom: height * 0.02
   },
   retryButton: {
-    backgroundColor: '#FFBE76',
+    backgroundColor: '#8454ff',
     padding: 15,
     borderRadius: 10,
     flex: 1,
     alignItems: 'center',
   },
   goBackButton: {
-    backgroundColor: '#FF6347',
+    backgroundColor: '#432887',
     padding: 15,
     borderRadius: 10,
     flex: 1,
@@ -544,14 +545,14 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   openButton: {
-    backgroundColor: '#FFBE76',
+    backgroundColor: '#8454ff',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
     marginBottom: height * 0.01,
   },
   goBackSuccess: {
-    backgroundColor: '#FF6347',
+    backgroundColor: '#432887',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
@@ -564,7 +565,7 @@ const styles = StyleSheet.create({
   finishText: {
     fontSize: 20,
     fontWeight: '400',
-    color: '#0A3D62',
+    color: '#FFBE76',
     textAlign: 'center',
     marginBottom: height * 0.03
   },
@@ -576,7 +577,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
       width: '90%',
-      height: '60%',
+      height: '40%',
       padding: 20,
       paddingTop: 50,
       backgroundColor: 'white',
@@ -593,10 +594,10 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginBottom: 15,
     textAlign: 'center',
-    color: '#0A3D62',
+    color: '#432887',
     fontWeight: '800'
   },
-  closeButton: {
+  closeBtn: {
       padding: 10,
       width: 42,
       height: 42,

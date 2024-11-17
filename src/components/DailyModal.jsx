@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     marginBottom: 15,
     textAlign: 'center',
-    color: '#0A3D62',
+    color: '#432887',
   },
   modalDescription: {
     fontSize: 17,

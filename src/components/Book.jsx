@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image, Dimensions, Alert, ScrollView } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image, Dimensions, Alert, ScrollView, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import book from '../constants/book';
@@ -56,6 +56,7 @@ const Book = () => {
   };
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
     <View style={styles.container}>
       <Text style={styles.scoreText}>{totalScore}</Text>
 
@@ -121,6 +122,7 @@ const Book = () => {
         </TouchableOpacity>
       </View>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -132,7 +134,6 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: height * 0.07,
     paddingBottom: height * 0.12,
-    backgroundColor: '#FDF3E7',
   },
   scoreText: {
     color: '#FF6347',
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
   topicTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#0A3D62',
+    color: '#432887',
     textAlign: 'center',
     marginBottom: 10,
   },

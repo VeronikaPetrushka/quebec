@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, FlatList, Dimensions, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
@@ -47,6 +47,7 @@ const Catalogue = () => {
     };
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
         <View style={styles.container}>
             {catalogueItems.length === 0 ? (
                 <View style={styles.noItemsContainer}>
@@ -69,6 +70,7 @@ const Catalogue = () => {
                 />
             )}
         </View>
+        </ImageBackground>
     );
 };
 
@@ -81,7 +83,6 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingTop: height * 0.07,
         paddingBottom: height * 0.12,
-        backgroundColor: '#FDF3E7'
     },
     noItemsContainer: {
         flex: 1,
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     },
     noItemsText: {
         fontSize: 18,
-        color: '#3C3C3C',
+        color: '#FDF3E7',
         textAlign: 'center',
         marginBottom: 20,
     },
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 16,
         textAlign: 'center',
-        color: '#0A3D62',
+        color: '#FDF3E7',
     },
     detailsButton: {
         marginTop: 10,

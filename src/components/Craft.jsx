@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions, Alert, Modal } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions, Alert, Modal, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import crafts from '../constants/crafts';
@@ -90,6 +90,7 @@ const Crafts = () => {
   };
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
     <View style={styles.container}>
       <Text style={styles.scoreText}>{totalScore}</Text>
 
@@ -181,6 +182,7 @@ const Crafts = () => {
         </View>
       </Modal>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -192,7 +194,6 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: height * 0.07,
     paddingBottom: height * 0.12,
-    backgroundColor: '#FDF3E7',
   },
   scoreText: {
     color: '#FF6347',
@@ -217,14 +218,14 @@ const styles = StyleSheet.create({
   craftName: {
     fontSize: 24,
     fontWeight: '800',
-    color: '#0A3D62',
+    color: '#432887',
     textAlign: 'center',
     marginBottom: height * 0.04,
   },
   materialsTitle: {
     fontSize: 19,
     fontWeight: '600',
-    color: '#0A3D62',
+    color: '#432887',
     marginBottom: height * 0.02,
   },
   materials: {
@@ -288,7 +289,7 @@ const styles = StyleSheet.create({
   recipeTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#0A3D62',
+    color: '#432887',
     marginBottom: 20,
   },
   recipeItem: {
@@ -306,7 +307,7 @@ const styles = StyleSheet.create({
   closeButton: {
     width: '47%',
     paddingVertical: 10,
-    backgroundColor: '#FF6347',
+    backgroundColor: '#8454ff',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center'
@@ -318,7 +319,7 @@ const styles = StyleSheet.create({
   viewDetailsButton: {
     paddingVertical: 10,
     width: '47%',
-    backgroundColor: '#0A3D62',
+    backgroundColor: '#432887',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center'

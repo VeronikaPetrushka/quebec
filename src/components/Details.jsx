@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Image, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Alert } from "react-native";
+import { View, Image, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Alert, ImageBackground } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
@@ -49,6 +49,7 @@ const Details = ({ image, name, story, coordinates }) => {
     };
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back2.jpg')} style={{flex: 1}}>
         <View style={styles.container}>
             <TouchableOpacity style={styles.icon} onPress={() => navigation.goBack()}>
                 <Icons type={"back"} />
@@ -101,6 +102,7 @@ const Details = ({ image, name, story, coordinates }) => {
                 </View>
             )}
         </View>
+        </ImageBackground>
     );
 };
 
@@ -112,7 +114,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-start",
         paddingBottom: height * 0.2,
-        backgroundColor: "#FDF3E7",
     },
 
     image: {
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
 
     addBtn: {
         width: "48%",
-        backgroundColor: "#ff9927",
+        backgroundColor: "#432887",
         padding: 15,
         borderRadius: 10,
         alignItems: "center",
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
 
     locationBtn: {
         width: "48%",
-        backgroundColor: "#FFBE76",
+        backgroundColor: "#8454ff",
         padding: 15,
         borderRadius: 10,
         alignItems: "center",
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         textAlign: "center",
         marginBottom: height * 0.03,
-        color: "#0A3D62",
+        color: "#FDF3E7",
     },
 
     textContainer: {
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
         fontWeight: "400",
         fontSize: 18,
         textAlign: "justify",
-        color: "#3C3C3C",
+        color: "#fff",
     },
 
     icon: {

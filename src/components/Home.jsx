@@ -64,6 +64,7 @@ const Home = () => {
     };
 
     return(
+        <ImageBackground source={require('../assets/newDiz/back2.jpg')} style={{flex: 1}}>
         <View style={styles.container}>
 
             <TouchableOpacity style={styles.userContainer} onPress={() => setUserProfileModalVisible(true)}>
@@ -106,6 +107,7 @@ const Home = () => {
             <UserProfile visible={userProfileModalVisible} onClose={closeUserProfileModal}/>
             <AboutModal visible={aboutModalVisible} onClose={() => setAboutModalVisible(false)}/>
         </View>
+        </ImageBackground>
     )
 };
 
@@ -117,7 +119,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         padding: 30,
         paddingTop: height * 0.07,
-        backgroundColor: '#FDF3E7'
     },
 
     userContainer: {
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 23,
         fontWeight: '700',
-        color: '#0A3D62',
+        color: '#FDF3E7',
         lineHeight: 23,
         textAlign: 'center',
         marginBottom: height * 0.02
@@ -198,8 +199,8 @@ const styles = StyleSheet.create({
         width: '47%',
         height: height * 0.1,
         borderWidth: 0.5,
-        borderColor: '#3C3C3C',
-        backgroundColor: '#FFBE76',
+        borderColor: '#fff',
+        backgroundColor: '#8454ff',
         borderRadius: 12,
         marginBottom: 10,
         zIndex: 10
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
     btnTxt: {
         fontSize: 18,
         fontWeight: '900',
-        color: '#3C3C3C'
+        color: '#fff'
     }
 });
 

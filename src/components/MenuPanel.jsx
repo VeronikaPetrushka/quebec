@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 9,
         flexDirection: 'row',
-        backgroundColor: '#FFBE76',
+        backgroundColor: '#8454ff',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         alignSelf: "center",
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         padding: 12
     },
     activeButton: {
-        backgroundColor: '#0A3D62',
+        backgroundColor: '#432887',
         borderRadius: 30,
     }
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from "react-native";
+import { View, Image, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icons from "./Icons";
 
@@ -9,6 +9,7 @@ const Article = ({title, content, image}) => {
     const navigation = useNavigation();
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back2.jpg')} style={{flex: 1}}>
         <View style={styles.container}>
             <TouchableOpacity style={styles.icon} onPress={() => navigation.goBack()}>
                 <Icons type={"back"} />
@@ -22,6 +23,7 @@ const Article = ({title, content, image}) => {
                 </ScrollView>
             </View>
         </View>
+        </ImageBackground>
     );
 };
 
@@ -33,7 +35,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-start",
         paddingBottom: height * 0.2,
-        backgroundColor: "#FDF3E7",
     },
 
     image: {
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         textAlign: "center",
         marginBottom: height * 0.03,
-        color: "#0A3D62",
+        color: "#FDF3E7",
     },
 
     textContainer: {
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
         fontWeight: "400",
         fontSize: 18,
         textAlign: "justify",
-        color: "#3C3C3C",
+        color: "#fff",
     },
 
     icon: {

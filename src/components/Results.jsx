@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Dimensions, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { height, width } = Dimensions.get('window');
@@ -39,6 +39,7 @@ const Results = () => {
   }, []);
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
     <View style={styles.container}>
       <Text style={styles.totalScore}>{totalScore}</Text>
       
@@ -53,6 +54,7 @@ const Results = () => {
         keyExtractor={(item, index) => index.toString()}
       />
     </View>
+    </ImageBackground>
   );
 };
 
@@ -65,7 +67,6 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingTop: height * 0.07,
         paddingBottom: height * 0.12,
-        backgroundColor: '#FDF3E7'
     },
   totalScore: {
     fontSize: 24,

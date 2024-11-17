@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, Modal, ScrollView, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Modal, ScrollView, StyleSheet, FlatList, Dimensions, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import Icons from './Icons';
@@ -355,6 +355,7 @@ const ChampionQuiz = ({ quiz }) => {
 
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
     <View style={styles.container}>
       <Text style={styles.topic}>{quiz.topic}</Text>
       <Image source={quiz.image} style={styles.image} />
@@ -387,6 +388,7 @@ const ChampionQuiz = ({ quiz }) => {
             </View>
         </Modal>
     </View>
+    </ImageBackground>
   );
 };
 
@@ -398,14 +400,13 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.07,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#FDF3E7'
   },
   topic: {
     fontSize: 24,
     fontWeight: '800',
     marginBottom: 20,
     textAlign: 'center',
-    color: '#0A3D62',
+    color: '#FDF3E7',
   },
   timer: {
     fontSize: 20,
@@ -421,13 +422,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: height * 0.02,
     textAlign: 'center',
-    color: '#3C3C3C',
+    color: '#fff',
   },
   optionsContainer: {
     marginTop: 10,
   },
   option: {
-    backgroundColor: '#FFBE76',
+    backgroundColor: '#8454ff',
     padding: 15,
     marginBottom: 10,
     borderRadius: 10,
@@ -435,7 +436,7 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 16,
-    color: '#3C3C3C',
+    color: '#fff',
     fontWeight: '700'
   },
   correctOption: {
@@ -460,7 +461,7 @@ const styles = StyleSheet.create({
   endMessage: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#333',
+    color: '#fff',
   },
   heart: {
     width: 35,
@@ -519,14 +520,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   retryButton: {
-    backgroundColor: '#FFBE76',
+    backgroundColor: '#8454ff',
     padding: 15,
     borderRadius: 10,
     flex: 1,
     alignItems: 'center',
   },
   goBackButton: {
-    backgroundColor: '#FF6347',
+    backgroundColor: '#432887',
     padding: 15,
     borderRadius: 10,
     flex: 1,
@@ -534,14 +535,14 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   openButton: {
-    backgroundColor: '#FFBE76',
+    backgroundColor: '#8454ff',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
     marginBottom: height * 0.01,
   },
   goBackSuccess: {
-    backgroundColor: '#FF6347',
+    backgroundColor: '#432887',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
@@ -555,7 +556,7 @@ const styles = StyleSheet.create({
   finishText: {
     fontSize: 20,
     fontWeight: '400',
-    color: '#0A3D62',
+    color: '#FDF3E7',
     textAlign: 'center',
     marginBottom: height * 0.02
   },
@@ -584,7 +585,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginBottom: 15,
     textAlign: 'center',
-    color: '#0A3D62',
+    color: '#432887',
     fontWeight: '800'
   },
   closeButton: {

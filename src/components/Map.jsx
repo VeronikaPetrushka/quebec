@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     height: height * 0.13,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: '#FF6347',
+    borderColor: '#8454ff',
   },
   detailsButton: {
     marginTop: 10,

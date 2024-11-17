@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Image, ScrollView, StyleSheet, Dimensions } from "react-native";
+import { View, TouchableOpacity, Text, Image, ScrollView, StyleSheet, Dimensions, ImageBackground } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import pathfinder from "../constants/pathfinder";
 import champion from "../constants/champion";
@@ -18,6 +18,7 @@ const Topics = ({ difficulty }) => {
     };
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
         <View style={styles.container}>
             <Text style={styles.title}>Topics</Text>
 
@@ -48,6 +49,7 @@ const Topics = ({ difficulty }) => {
             </ScrollView>
 
         </View>
+        </ImageBackground>
     );
 };
 
@@ -60,7 +62,6 @@ const styles = StyleSheet.create({
       padding: 30,
       paddingTop: height * 0.07,
       paddingBottom: height * 0.12,
-      backgroundColor: "#FDF3E7",
     },
 
     title: {
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
       fontSize: 34,
       textAlign: "center",
       marginBottom: height * 0.04,
-      color: "#0A3D62",
+      color: "#FDF3E7",
     },
 
     btnContainer: {
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
         height: height * 0.15,
         borderRadius: 12,
         borderWidth: 2,
-        borderColor: '#3C3C3C',
+        borderColor: '#fff',
         overflow: 'hidden',
         alignItems: 'center',
         justifyContent: 'center',
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
     btnText: {
         fontSize: 14,
         fontWeight: '700',
-        color: '#3C3C3C',
+        color: '#FDF3E7',
     }
 });
 

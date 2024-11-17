@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert, Vibration, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, Vibration, Dimensions, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useMusic } from '../constants/music.js';
 
@@ -71,6 +71,7 @@ const Settings = () => {
     };
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back1.jpg')} style={{flex: 1}}>
         <View style={styles.container}>
             {showResetConfirmation ? (
                 <>
@@ -118,6 +119,7 @@ const Settings = () => {
                 </>
             )}
         </View>
+        </ImageBackground>
     );
 };
 
@@ -131,14 +133,13 @@ const styles = StyleSheet.create({
         paddingTop: height * 0.08,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#FDF3E7'
     },
     title: {
         fontWeight: 'bold',
         fontSize: 34,
         textAlign: 'center',
         marginBottom: height * 0.11,
-        color: '#0A3D62',
+        color: '#FDF3E7',
     },
     regulatorContainer: {
         flexDirection: 'row',
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: '#FF6347'
+        color: '#cab5ff'
     },
     toggleContainer: {
         padding: 7,
@@ -160,10 +161,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 1,
         borderRadius: 30,
-        borderColor: '#FF6347',
+        borderColor: '#cab5ff',
     },
     toggleContainerOff: {
-        borderColor: '#3C3C3C',
+        borderColor: '#d1d1d1',
     },
     toggleText: {
         fontSize: 16,
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
         color: '#e2d6b1',
     },
     toggleTextOff: {
-        color: '#3C3C3C',
+        color: '#d1d1d1',
     },
     toggle: {
         borderRadius: 30,
@@ -180,11 +181,11 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     toggleOn: {
-        backgroundColor: '#FF6347',
+        backgroundColor: '#cab5ff',
         alignSelf: 'flex-end',
     },
     toggleOff: {
-        backgroundColor: '#3C3C3C',
+        backgroundColor: '#d1d1d1',
         alignSelf: 'flex-start',
     },
     shareBtn: {
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     },
     resetBtn: {
         width: '100%',
-        backgroundColor: '#FFBE76',
+        backgroundColor: '#8454ff',
         borderRadius: 15,
         padding: 15,
         alignItems: 'center',
@@ -216,11 +217,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: height * 0.1,
         marginTop: height * 0.15,
-        color: '#3C3C3C'
+        color: '#FDF3E7'
     },
     cancelReset: {
         width: '100%',
-        borderColor: '#3C3C3C',
+        borderColor: '#FDF3E7',
         borderWidth: 2,
         borderRadius: 15,
         padding: 15,
@@ -231,7 +232,7 @@ const styles = StyleSheet.create({
     cancelBtnText: {
         fontSize: 19,
         fontWeight: '500',
-        color: '#3C3C3C',
+        color: '#FDF3E7',
     }
 });
 
